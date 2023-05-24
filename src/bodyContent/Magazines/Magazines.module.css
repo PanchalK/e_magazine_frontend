@@ -1,0 +1,25 @@
+.styletwo {
+    border: 0;
+    height: 2.5px;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgb(62, 146, 255),
+      rgba(255, 255, 255, 0)
+    );
+    width: 15%;
+    margin: auto;
+  }
+
+  .heading{
+    font-family: 'Roboto Slab', serif;
+  }
+
+  @media only screen and(max-width:500px) {
+    .styletwo {
+        width: 20%;
+    height: 1px;
+
+      }
+    
+  }
