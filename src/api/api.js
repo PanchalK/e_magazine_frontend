@@ -281,25 +281,3 @@ export const deleteEditor = async (id) => {
 export const deleteArticle = async (id) => {
   return await axios.delete(`${usersUrl}/deletearticle/${id}`);
 };
-
-// /////Student information sumiting funcitons ///////
-
-// export const addCOdata = async (user) => {
-//     try {
-//         const obj = {
-//             url: `${usersUrl}/addCOofUsers`,
-//             method: "POST",
-//             data: user,
-//         };
-//         const result = await axios(obj);
-//         return {
-//             success: true,
-//             data: result
-//         };
-//     } catch (error) {
-//         return {
-//             success: false,
-//             data: error
-//         }
-//     }
-// };
