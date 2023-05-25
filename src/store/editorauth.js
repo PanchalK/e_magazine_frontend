@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let editorAuthInitials = {
   isEditorAuthenticated: JSON.parse(localStorage.getItem("editor_details")) ? true : false,
-  editorEmail: ""
+  editorEmail: JSON.parse(localStorage.getItem("editor_details")) ? JSON.parse(localStorage.getItem("editor_details")).editorEmail : null,
 }
 
 const EditorAuthSlice = createSlice({

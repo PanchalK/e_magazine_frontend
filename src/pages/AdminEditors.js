@@ -175,7 +175,7 @@ const AdminEditors = () => {
                     </Box>
                     <Box>
                       <FormLabel htmlFor="image">Upload Picture</FormLabel>
-                      <Input type="file" ref={Image} id="image" />
+                      <Input type="file" ref={Image} id="image" padding={"5px"}/>
                     </Box>
                   </Stack>
                 </DrawerBody>

@@ -42,11 +42,10 @@ const Post = () => {
     const ReceivedImage = Image.current.files[0];
 
     setUploadLoading(true);
-    const imageName= Date.now();
-    const ImageRef = ref(storage, `napprovedarticleimages/${imageName}`);
+    const ImageRef = ref(storage, `napprovedarticleimages/${ReceivedTitle}_${ReceivedName}`);
     uploadBytes(ImageRef, ReceivedImage)
     .then((response) => {
-      getDownloadURL(ref(storage, `napprovedarticleimages/${imageName}`))
+      getDownloadURL(ref(storage, `napprovedarticleimages/${ReceivedTitle}_${ReceivedName}`))
       .then((url) => {
         let notApprovedArticle = {
           name: ReceivedName,

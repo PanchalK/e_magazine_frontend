@@ -16,7 +16,7 @@ import EditorMagazine from "./pages/EditorMagazine";
 import EditorArticle from "./pages/EditorArticle";
 import EditorAchievement from "./pages/EditorAchievement";
 import EditorPublication from "./pages/EditorPublication";
-import EditorPlacementRecord from "./pages/EditorPlacementRecord";
+import EditorPlacementRecords from "./pages/EditorPlacementRecords";
 import EditorTechNews from "./pages/EditorTechNews";
 
 function App() {
@@ -76,7 +76,7 @@ function App() {
                 <EditorPublication />
               </Route>
               <Route path="/editor/placementrecords">
-                <EditorPlacementRecord />
+                <EditorPlacementRecords />
               </Route>
               <Route path="/editor/technews">
                 <EditorTechNews />
