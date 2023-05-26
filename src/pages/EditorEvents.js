@@ -79,7 +79,7 @@ function EditorEvents() {
     addEvent(eventDetails)
       .then((res) => {
         res = res.data;
-        console.log("Successfully added Placement Details");
+        console.log("Successfully added Event Details");
         setEventsData((prev) => [...prev, res.data]);
       })
       .catch((e) => {

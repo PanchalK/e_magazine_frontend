@@ -333,6 +333,69 @@ export const deleteEvent = async (id) => {
   return await axios.delete(`${usersUrl}/deleteevent/${id}`);
 };
 
+export const getPublications = async () => {
+  try {
+    const obj = {
+      url: `${usersUrl}/getpublications`,
+      method: "GET",
+    };
+    const result = await axios(obj);
+    return {
+      success: true,
+      data: result.data,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};
+
+export const addPublication = async (publicationdata) => {
+  try {
+    const obj = {
+      url: `${usersUrl}/addpublication`,
+      method: "POST",
+      data: publicationdata,
+    };
+    const result = await axios(obj);
+    return {
+      success: true,
+      data: result,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};
+
+export const editPublication = async (id, publication) => {
+    try {
+      const obj = {
+        url: `${usersUrl}/updatepublication/${id}`,
+        method: "PUT",
+        data: publication,
+      };
+      const result = await axios(obj);
+      return {
+        success: true,
+        data: result,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        data: error,
+      };
+    }
+  };
+
+export const deletePublication = async (id) => {
+  return await axios.delete(`${usersUrl}/deletepublication/${id}`);
+};
+
 export const deleteMagazine = async (id) => {
   return await axios.delete(`${usersUrl}/deletemagazine/${id}`);
 };

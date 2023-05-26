@@ -14,7 +14,6 @@ import { HStack } from "@chakra-ui/react";
 import AdminMagazine from "./pages/AdminMagazine";
 import EditorMagazine from "./pages/EditorMagazine";
 import EditorArticle from "./pages/EditorArticle";
-import EditorAchievement from "./pages/EditorAchievement";
 import EditorPublication from "./pages/EditorPublication";
 import EditorPlacementRecords from "./pages/EditorPlacementRecords";
 import EditorEvents from "./pages/EditorEvents";
@@ -68,9 +67,6 @@ function App() {
               </Route>
               <Route path="/editor/articles">
                 <EditorArticle />
-              </Route>
-              <Route path="/editor/achievements">
-                <EditorAchievement />
               </Route>
               <Route path="/editor/publications">
                 <EditorPublication />

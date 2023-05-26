@@ -18,7 +18,6 @@ import {
 const LinkItems = [
   { name: 'Magazines', link: "/editor/magazines"},
   { name: 'Articles', link: "/editor/articles"},
-  { name: 'Achievements', link: "/editor/achievements"},
   { name: 'Publications', link: "/editor/publications"},
   { name: 'Placement Records', link: "/editor/placementrecords"},
   { name: 'Events', link: "/editor/events"},

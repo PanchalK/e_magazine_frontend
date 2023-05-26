@@ -14,24 +14,25 @@ import {
   Text,
   Textarea,
   Input,
+  Link,
 } from "@chakra-ui/react";
-import { deleteEvent, editEvent } from "../../api/api";
+import { deletePublication, editPublication } from "../../api/api";
 
-const EditorEventDetails = (props) => {  
+const EditorPublicationDetails = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const eventDeleteHandler = async () => {
-    await deleteEvent(props.data._id);
-    props.getEventsHandler();
+  const publicationDeleteHandler = async () => {
+    await deletePublication(props.data._id);
+    props.getPublicationsHandler();
   };
   const updateHandler = () => {
-    props.getEventsHandler();
+    props.getPublicationsHandler();
   };
 
   const [editing, setEditing] = useState(false);
 
   const [titleValue, setTitleValue] = useState(props.data.title);
-  const [contentValue, setContentValue] = useState(props.data.content);
+  const [abstractValue, setAbstractValue] = useState(props.data.abstract);
 
   const handleEdit = () => {
     setEditing(true);
@@ -44,36 +45,33 @@ const EditorEventDetails = (props) => {
 
   const handleSave = async () => {
     setEditing(false);
-    const event = { title: titleValue, content: contentValue };
-    await editEvent(props.data._id, event);
+    const publication = { title: titleValue, abstract: abstractValue };
+    await editPublication(props.data._id, publication);
   };
 
   const handleTitleChange = (event) => {
     setTitleValue(event.target.value);
   };
 
-  const handleContentChange = (event) => {
-    setContentValue(event.target.value);
+  const handleAbstractChange = (event) => {
+    setAbstractValue(event.target.value);
   };
 
-  const startdate = new Date(props.data.startdate);
-  let startdateValue = startdate.getDate();
-  let startmonthValue = startdate.getMonth()+1;
-  let startyearValue= startdate.getFullYear();
-
-  const enddate = new Date(props.data.enddate);
-  let enddateValue = enddate.getDate();
-  let endmonthValue = enddate.getMonth()+1;
-  let endyearValue= enddate.getFullYear();
+  const publicationdate = new Date(props.data.publicationdate);
+  let dateValue = publicationdate.getDate();
+  let monthValue = publicationdate.getMonth() + 1;
+  let yearValue = publicationdate.getFullYear();
 
   return (
     <Tr>
       <Td>{props.data.title}</Td>
-      <Td>{startdateValue}/{startmonthValue}/{startyearValue}</Td>
-      <Td>{enddateValue}/{endmonthValue}/{endyearValue}</Td>
+      <Td>{props.data.authors}</Td>
+      <Td>
+        {dateValue}/{monthValue}/{yearValue}
+      </Td>
       <Td>
         <Button mt={0} onClick={onOpen}>
-          Open Event Content
+          Open Abstract Content
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} size="full">
           <ModalOverlay />
@@ -90,11 +88,11 @@ const EditorEventDetails = (props) => {
               {editing ? (
                 <Textarea
                   height="100vh"
-                  value={contentValue}
-                  onChange={handleContentChange}
+                  value={abstractValue}
+                  onChange={handleAbstractChange}
                 />
               ) : (
-                <Text textAlign={"justify"}>{contentValue}</Text>
+                <Text textAlign={"justify"}>{abstractValue}</Text>
               )}
             </ModalBody>
             <ModalFooter>
@@ -120,9 +118,21 @@ const EditorEventDetails = (props) => {
           </ModalContent>
         </Modal>
       </Td>
-      <Td>{props.data.place}</Td>
+      <Td>{props.data.venue}</Td>
       <Td>
-        <Button colorScheme="red" size="sm" onClick={eventDeleteHandler}>
+        {props.data.url && (
+          <Link
+            href={props.data.url}
+            target="_blank"
+            rel="noreferrer"
+            color={"blue"}
+          >
+            Click Here
+          </Link>
+        )}
+      </Td>
+      <Td>
+        <Button colorScheme="red" size="sm" onClick={publicationDeleteHandler}>
           Delete
         </Button>
       </Td>
@@ -130,4 +140,4 @@ const EditorEventDetails = (props) => {
   );
 };
 
-export default EditorEventDetails;
+export default EditorPublicationDetails;
