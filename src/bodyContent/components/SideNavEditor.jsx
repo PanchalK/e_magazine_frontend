@@ -21,7 +21,7 @@ const LinkItems = [
   { name: 'Achievements', link: "/editor/achievements"},
   { name: 'Publications', link: "/editor/publications"},
   { name: 'Placement Records', link: "/editor/placementrecords"},
-  { name: 'Tech News', link: "/editor/technews"},
+  { name: 'Events', link: "/editor/events"},
 ];
 const title = "Editor Dashboard";
 

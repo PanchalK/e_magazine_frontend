@@ -270,6 +270,69 @@ export const deletePlacement = async (id) => {
   return await axios.delete(`${usersUrl}/deleteplacement/${id}`);
 };
 
+export const getEvents = async () => {
+  try {
+    const obj = {
+      url: `${usersUrl}/getevents`,
+      method: "GET",
+    };
+    const result = await axios(obj);
+    return {
+      success: true,
+      data: result.data,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};
+
+export const addEvent = async (eventdata) => {
+  try {
+    const obj = {
+      url: `${usersUrl}/addevent`,
+      method: "POST",
+      data: eventdata,
+    };
+    const result = await axios(obj);
+    return {
+      success: true,
+      data: result,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};
+
+export const editEvent = async (id, event) => {
+    try {
+      const obj = {
+        url: `${usersUrl}/updateevent/${id}`,
+        method: "PUT",
+        data: event,
+      };
+      const result = await axios(obj);
+      return {
+        success: true,
+        data: result,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        data: error,
+      };
+    }
+  };
+
+export const deleteEvent = async (id) => {
+  return await axios.delete(`${usersUrl}/deleteevent/${id}`);
+};
+
 export const deleteMagazine = async (id) => {
   return await axios.delete(`${usersUrl}/deletemagazine/${id}`);
 };

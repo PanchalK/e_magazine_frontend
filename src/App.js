@@ -17,7 +17,7 @@ import EditorArticle from "./pages/EditorArticle";
 import EditorAchievement from "./pages/EditorAchievement";
 import EditorPublication from "./pages/EditorPublication";
 import EditorPlacementRecords from "./pages/EditorPlacementRecords";
-import EditorTechNews from "./pages/EditorTechNews";
+import EditorEvents from "./pages/EditorEvents";
 
 function App() {
   const isAdminAuth = useSelector(
@@ -78,8 +78,8 @@ function App() {
               <Route path="/editor/placementrecords">
                 <EditorPlacementRecords />
               </Route>
-              <Route path="/editor/technews">
-                <EditorTechNews />
+              <Route path="/editor/events">
+                <EditorEvents />
               </Route>
             </HStack>
           </>

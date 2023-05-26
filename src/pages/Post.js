@@ -29,7 +29,55 @@ const Post = () => {
   //loading states
   const [uploadLoading, setUploadLoading] = useState(false);
 
-  const submitHandler = async (event) => {
+  const upload_artcle = (
+    url,
+    ReceivedName,
+    ReceivedEmailId,
+    ReceivedProgram,
+    ReceivedSemester,
+    ReceivedTitle,
+    ReceivedSummary,
+    ReceivedArticle
+  ) => {
+    let articledetails = {
+      name: ReceivedName,
+      email: ReceivedEmailId,
+      program: ReceivedProgram,
+      semester: ReceivedSemester,
+      title: ReceivedTitle,
+      summary: ReceivedSummary,
+      article: ReceivedArticle,
+      image: url,
+      approved: false,
+    };
+
+    setUploadLoading(false);
+
+    addArticle(articledetails)
+      .then((res) => {
+        console.log("Successfully added Article", res);
+
+        swal({
+          title: "Thank you for Posting!",
+          text: "You will be notified shortly.",
+          icon: "success",
+          buttons: false,
+          timer: 3500,
+        });
+
+        setTimeout(() => {
+          history.replace("/");
+        }, 3000);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => {
+        setUploadLoading(false);
+      });
+  };
+
+  const submitHandler = (event) => {
     event.preventDefault();
 
     const ReceivedName = Name.current.value;
@@ -41,49 +89,50 @@ const Post = () => {
     const ReceivedArticle = Article.current.value;
     const ReceivedImage = Image.current.files[0];
 
+    const ImageRef = ref(
+      storage,
+      `napprovedarticleimages/${ReceivedTitle}_${ReceivedName}`
+    );
+
+    console.log("input file", ReceivedImage);
+
     setUploadLoading(true);
-    const ImageRef = ref(storage, `napprovedarticleimages/${ReceivedTitle}_${ReceivedName}`);
-    uploadBytes(ImageRef, ReceivedImage)
-    .then((response) => {
-      getDownloadURL(ref(storage, `napprovedarticleimages/${ReceivedTitle}_${ReceivedName}`))
-      .then((url) => {
-        let notApprovedArticle = {
-          name: ReceivedName,
-          email: ReceivedEmailId,
-          program: ReceivedProgram,
-          semester: ReceivedSemester,
-          title: ReceivedTitle,
-          summary: ReceivedSummary,
-          article: ReceivedArticle,
-          image: url,
-          approved: false
-        }
-  
-        addArticle(notApprovedArticle)
-        .then((res) => {
-          console.log("Successfully added Article",res);
-  
-          swal({
-            title: "Thank you for Posting!",
-            text: "You will be notified shortly.",
-            icon: "success",
-            buttons: false,
-            timer: 3500,
+    if (ReceivedImage) {
+      uploadBytes(ImageRef, ReceivedImage)
+        .then((response) => {
+          getDownloadURL(
+            ref(
+              storage,
+              `napprovedarticleimages/${ReceivedTitle}_${ReceivedName}`
+            )
+          ).then((url) => {
+            upload_artcle(
+              url,
+              ReceivedName,
+              ReceivedEmailId,
+              ReceivedProgram,
+              ReceivedSemester,
+              ReceivedTitle,
+              ReceivedSummary,
+              ReceivedArticle
+            );
           });
-  
-          setTimeout(() => {
-            history.replace("/")
-          },3000)
-  
         })
-        .catch(e => {
-          console.log(e);
-        })
-      })
-    })
-    .finally(() => {
-      setUploadLoading(false);
-    })
+        .catch((e) => {
+          console.log(e.message);
+        });
+    } else {
+      upload_artcle(
+        null,
+        ReceivedName,
+        ReceivedEmailId,
+        ReceivedProgram,
+        ReceivedSemester,
+        ReceivedTitle,
+        ReceivedSummary,
+        ReceivedArticle
+      );
+    }
   };
 
   return (
@@ -108,22 +157,27 @@ const Post = () => {
               <FormLabel>Email</FormLabel>
               <Input type="email" ref={EmailId} required />
               <FormLabel>Program</FormLabel>
-              <Input type="text" ref={Program}/>
+              <Input type="text" ref={Program} />
               <FormLabel>Semester</FormLabel>
               <Input type="number" ref={Semester} />
               <FormLabel>Title of Article</FormLabel>
               <Input type="text" ref={Title} required />
               <FormLabel>Brief Summary of the Article</FormLabel>
               <Textarea
-                placeholder="Provide a brief summary of your article here" ref={Summary}
+                placeholder="Provide a brief summary of your article here"
+                ref={Summary}
                 required
               />
               <FormLabel>Article</FormLabel>
-              <Textarea placeholder="Type your article here" ref={Article} required />
+              <Textarea
+                placeholder="Type your article here"
+                ref={Article}
+                required
+              />
               <FormLabel>
                 Upload image related to the Article (if any)
               </FormLabel>
-              <Input type="file" ref={Image}/>
+              <Input type="file" ref={Image} />
               <Button type="submit" mt="4" colorScheme="blue">
                 {uploadLoading ? <Spinner /> : "Submit"}
               </Button>
