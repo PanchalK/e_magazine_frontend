@@ -66,13 +66,11 @@ function EditorPublication() {
     const ReceivedVenue = Venue.current.value;
     const ReceivedURL = URL.current.value;
 
-    const updatedPublicationDate = new Date(ReceivedPublicationDate);
-
     setUploadLoading(true);
     let publicationDetails = {
       title: ReceivedTitle,
       authors: ReceivedAuthors,
-      publicationdate: updatedPublicationDate,
+      publicationdate: ReceivedPublicationDate,
       abstract: ReceivedAbstract,
       venue: ReceivedVenue,
       url: ReceivedURL,
@@ -156,7 +154,7 @@ function EditorPublication() {
                   </Box>
                   <Box>
                     <FormLabel htmlFor="PublicationDate">Publication Date</FormLabel>
-                    <Input ref={PublicationDate} type="date" id="PublicationDate" required />
+                    <Input ref={PublicationDate} type="text" placeholder="DD/MM/YYYY" id="PublicationDate" required />
                   </Box>
                   <Box>
                     <FormLabel htmlFor="Abstract">Abstract (Summary of the Publication)</FormLabel>

@@ -1,6 +1,24 @@
 import { Box, Image, Heading, Text } from "@chakra-ui/react";
 
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 const MagazineCard = (props) => {
+  const date = new Date(props.releasedate);
+  let monthValue = date.getMonth();
+  let yearValue = date.getFullYear();
   return (
     <a href={props.link} target="_blank" rel="noreferrer">
     <Box
@@ -20,7 +38,7 @@ const MagazineCard = (props) => {
           {props.title}
         </Heading>
         <Text fontSize="sm" color="gray.500">
-          Published on {props.releasedate.month}, {props.releasedate.year}
+          Published on {monthNames[monthValue]}, {yearValue}
         </Text>
       </Box>
     </Box>

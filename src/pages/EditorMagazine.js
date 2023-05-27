@@ -64,20 +64,7 @@ function EditorMagazine() {
     const ReceivedCoverImage = CoverImage.current.files[0];
     const ReceivedMagazine = Magazine.current.files[0];
     var dateEntered = new Date(ReceivedReleaseDate);
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
+    
     setUploadLoading(true);
 
     const coverImageRef = ref(
@@ -100,11 +87,7 @@ function EditorMagazine() {
               let magazinedetails = {
                 magazinecode: ReceivedMagazineCode,
                 title: ReceivedTitle,
-                releasedate: {
-                  day: dateEntered.getDate(),
-                  month: monthNames[dateEntered.getMonth()],
-                  year: dateEntered.getFullYear(),
-                },
+                releasedate: dateEntered,
                 coverimg: coverurl,
                 link: linkurl,
                 approved: false,

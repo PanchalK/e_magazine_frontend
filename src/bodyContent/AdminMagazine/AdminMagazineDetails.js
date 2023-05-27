@@ -2,6 +2,12 @@ import { Button, Tr, Td, Image, HStack, Link } from "@chakra-ui/react";
 import { deleteMagazine, editMagazine } from "../../api/api";
 
 const AdminMagazineDetails = (props) => {
+
+  const date = new Date(props.data.releasedate);
+  let dayValue = date.getDate();
+  let monthValue = date.getMonth()+1;
+  let yearValue = date.getFullYear();
+  
   const magazineDeleteHandler = async () => {
     await deleteMagazine(props.data._id);
     props.getMagazinesHandler();
@@ -15,8 +21,7 @@ const AdminMagazineDetails = (props) => {
       <Td>{props.data.magazinecode}</Td>
       <Td>{props.data.title}</Td>
       <Td>
-        {props.data.releasedate.month} {props.data.releasedate.day},{" "}
-        {props.data.releasedate.year}
+        {dayValue}/{monthValue}/{yearValue}
       </Td>
       <Td>
         <Link href={props.data.coverimg} target="_blank" rel="noreferrer">
