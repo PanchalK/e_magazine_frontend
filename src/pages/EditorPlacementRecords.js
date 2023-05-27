@@ -26,11 +26,15 @@ import {
   Input,
   useDisclosure,
   Spinner,
+  useToast
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import EditorPlacementRecordsDetails from "../bodyContent/EditorPlacement/EditorPlacementRecordsDetails";
 
 function EditorPlacementRecords() {
+
+  const toast = useToast()
+
   const [uploadLoading, setUploadLoading] = useState(false);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -87,6 +91,13 @@ function EditorPlacementRecords() {
       })
       .finally(() => {
         setUploadLoading(false);
+        toast({
+          title: 'Placement record added',
+          description: "Successfully added placement record.",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
         onClose();
       });
   };

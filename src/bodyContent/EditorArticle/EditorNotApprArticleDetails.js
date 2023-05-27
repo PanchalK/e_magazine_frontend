@@ -15,11 +15,14 @@ import {
   ModalCloseButton,
   useDisclosure,
   HStack,
+  useToast
 } from "@chakra-ui/react";
 import { deleteArticle, editArticleApproval } from "../../api/api";
 import EditArticle from "./EditArticle";
 
 const EditorArticleDetails = (props) => {
+
+  const toast = useToast()
 
   const editoremail = useSelector((state) => state.editorauth.editorEmail);
 
@@ -54,6 +57,13 @@ const EditorArticleDetails = (props) => {
   const articleApproveHandler = async () => {
     await editArticleApproval(props.data._id);
     sendEmail();
+    toast({
+      title: 'Article approved',
+      description: "Successfully approved article. Approval mail sent.",
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
     props.getArticlesHandler();
   };
 

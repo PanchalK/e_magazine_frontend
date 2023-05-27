@@ -5,6 +5,8 @@ import { editorAuthActions } from "../../store/editorauth";
 import tuLogo from '../img/tu_logo.png';
 import classes from "./Header.module.css";
 import {useHistory} from "react-router-dom";
+import { BiLogIn } from "react-icons/bi";
+import { BiLogOut } from "react-icons/bi";
 
 const Header = () => {
   const history = useHistory();
@@ -46,9 +48,9 @@ const Header = () => {
               {isAdminAuth && <Button colorScheme='blue' variant='solid' onClick={adminConsoleHandler}>Dashboard</Button>}
               {isEditorAuth && <Button colorScheme='blue' variant='solid' onClick={editorConsoleHandler}>Dashboard</Button>}
               {!isAdminAuth && !isEditorAuth &&<Button colorScheme='blue' variant='solid'  onClick={postRedirectHandler}>Post Article</Button>}
-              {isAdminAuth && <Button colorScheme='blue' variant='outline' onClick={adminLogoutRedirectHandler}>Logout</Button>}
-              {isEditorAuth && <Button colorScheme='blue' variant='outline' onClick={editorLogoutRedirectHandler}>Logout</Button>}
-              {!isAdminAuth && !isEditorAuth && <Button colorScheme='blue' variant='outline' onClick={loginRedirectHandler}>Login</Button>}
+              {isAdminAuth && <Button leftIcon={<BiLogOut />} colorScheme='blue' variant='outline' onClick={adminLogoutRedirectHandler}>Logout</Button>}
+              {isEditorAuth && <Button leftIcon={<BiLogOut />} colorScheme='blue' variant='outline' onClick={editorLogoutRedirectHandler}>Logout</Button>}
+              {!isAdminAuth && !isEditorAuth && <Button leftIcon={<BiLogIn />} colorScheme='blue' variant='outline' onClick={loginRedirectHandler}>Login</Button>}
             </HStack>
         </Flex>
       </Box>

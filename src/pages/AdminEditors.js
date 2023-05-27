@@ -18,7 +18,8 @@ import {
   FormLabel,
   Input,
   useDisclosure,
-  Spinner
+  Spinner,
+  useToast
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { useEffect, useState, React, useRef } from "react";
@@ -29,6 +30,9 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getEditors, addEditor } from "../api/api";
 
 const AdminEditors = () => {
+  
+  const toast = useToast();
+
   const [uploadLoading, setUploadLoading] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const Name = useRef();
@@ -92,6 +96,13 @@ const AdminEditors = () => {
         })
     }).finally(() => {
       setUploadLoading(false);
+      toast({
+        title: "Editor Added",
+        description: "Successfully added editor.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
       onClose();
     })
   };

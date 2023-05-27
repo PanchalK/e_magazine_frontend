@@ -184,6 +184,26 @@ export const getEditors = async () => {
   }
 };
 
+export const editEditor = async (id, editor) => {
+  try {
+    const obj = {
+      url: `${usersUrl}/updateeditor/${id}`,
+      method: "PUT",
+      data: editor,
+    };
+    const result = await axios(obj);
+    return {
+      success: true,
+      data: result,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};
+
 export const addMagazine = async (magazine) => {
   try {
     const obj = {

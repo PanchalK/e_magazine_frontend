@@ -1,7 +1,9 @@
-import { Button, Tr, Td, Image, HStack, Link } from "@chakra-ui/react";
+import { Button, Tr, Td, Image, HStack, Link, useToast } from "@chakra-ui/react";
 import { deleteMagazine, editMagazine } from "../../api/api";
 
 const AdminMagazineDetails = (props) => {
+
+  const toast = useToast();
 
   const date = new Date(props.data.releasedate);
   let dayValue = date.getDate();
@@ -14,6 +16,13 @@ const AdminMagazineDetails = (props) => {
   };
   const magazineApproveHandler = async () => {
     await editMagazine(props.data._id);
+    toast({
+      title: "Magazine published",
+      description: "Successfully published the magazine.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
     props.getMagazinesHandler();
   };
   return (

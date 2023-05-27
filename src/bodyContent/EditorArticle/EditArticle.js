@@ -11,12 +11,14 @@ import {
   useDisclosure,
   Text,
   Textarea,
-  Input
+  Input,
+  useToast
 } from "@chakra-ui/react";
 import { editArticle } from "../../api/api";
 
 function EditArticle(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast()
 
   const [editing, setEditing] = useState(false);
 
@@ -36,6 +38,13 @@ function EditArticle(props) {
     setEditing(false);
     const article = {title: titleValue, content: contentValue}
     await editArticle(props.data._id, article);
+    toast({
+      title: 'Article updated',
+      description: "Successfully updated article.",
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
   };
 
   const handleTitleChange = (event) => {
@@ -51,7 +60,7 @@ function EditArticle(props) {
       <Button mt={0} onClick={onOpen}>
         Open Article
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose} size="full">
+      <Modal isOpen={isOpen} onClose={onClose} size="6xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader mt={"2%"} textAlign={"center"}>

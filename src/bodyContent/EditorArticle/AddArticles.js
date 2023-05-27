@@ -14,6 +14,7 @@ import {
   useDisclosure,
   Spinner,
   Textarea,
+  useToast
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { useState, React, useRef } from "react";
@@ -27,6 +28,7 @@ function NotApprovedArticles(props) {
   const [uploadLoading, setUploadLoading] = useState(false);
   
   //hooks
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure();
   
   //input refs
@@ -76,6 +78,13 @@ function NotApprovedArticles(props) {
       })
       .finally(() => {
         setUploadLoading(false);
+        toast({
+          title: 'Article added',
+          description: "Successfully added article.",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
         onClose();
       })
   }

@@ -23,11 +23,15 @@ import {
   Input,
   useDisclosure,
   Spinner,
+  useToast
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import EditorMagazineDetails from "../bodyContent/EditorMagazine/EditorMagazineDetails";
 
 function EditorMagazine() {
+
+  const toast = useToast()
+
   const [uploadLoading, setUploadLoading] = useState(false);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -96,7 +100,7 @@ function EditorMagazine() {
               addMagazine(magazinedetails)
                 .then((res) => {
                   res = res.data;
-                  console.log("Successfully added Editor");
+                  console.log("Successfully added Magazine");
                   setMagazineData((prev) => [...prev, res.data]);
                 })
                 .catch((e) => {
@@ -108,6 +112,13 @@ function EditorMagazine() {
       })
       .finally(() => {
         setUploadLoading(false);
+        toast({
+          title: 'Magazine added',
+          description: "Successfully added magazine.",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
         onClose();
       });
   };

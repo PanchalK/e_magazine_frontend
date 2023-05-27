@@ -21,12 +21,16 @@ import {
   Spinner,
   useDisclosure,
   Textarea,
+  useToast
 } from "@chakra-ui/react";
 import { addEvent, getEvents } from "../api/api";
 import { AddIcon } from "@chakra-ui/icons";
 import EditorEventDetails from "../bodyContent/EditorEvent/EditorEventDetails";
 
 function EditorEvents() {
+
+  const toast = useToast()
+
   const [uploadLoading, setUploadLoading] = useState(false);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -87,6 +91,13 @@ function EditorEvents() {
       })
       .finally(() => {
         setUploadLoading(false);
+        toast({
+          title: 'Event added',
+          description: "Successfully added event details.",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
         onClose();
       });
   };

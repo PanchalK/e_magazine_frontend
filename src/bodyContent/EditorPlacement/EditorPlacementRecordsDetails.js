@@ -1,9 +1,17 @@
-import { Button, Tr, Td, Link } from "@chakra-ui/react";
+import { Button, Tr, Td, Link, useToast } from "@chakra-ui/react";
 import { deletePlacement } from "../../api/api";
 
 const EditorPlacementRecordsDetails = (props) => {
+  const toast = useToast()
   const placementDeleteHandler = async () => {
     await deletePlacement(props.data._id);
+    toast({
+      title: 'Placement record Deleted',
+      description: "Successfully deleted placement record.",
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
     props.getPlacementsHandler();
   };
   return (

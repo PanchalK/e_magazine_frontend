@@ -27,7 +27,7 @@ const Magazines = () => {
       </Text>
       <hr className={classes.styletwo} ></hr>
       <Flex
-        justify="space-around"
+        gap = "9.7%"
         flexWrap="wrap"
         w={{ base: "90vw", sm: "90vw", md: "80vw", lg: "75vw" }}
         m="auto"

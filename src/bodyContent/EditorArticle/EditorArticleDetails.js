@@ -13,15 +13,23 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  useToast
 } from "@chakra-ui/react";
 import { deleteArticle } from "../../api/api";
 import EditArticle from "./EditArticle";
 
 const EditorArticleDetails = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const toast = useToast()
   const articleDeleteHandler = async () => {
     await deleteArticle(props.data._id);
+    toast({
+      title: 'Article Deleted',
+      description: "Successfully deleted article.",
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
     props.getArticlesHandler();
   };
   const updateHandler = () => {

@@ -13,15 +13,24 @@ import {
   useDisclosure,
   Link,
   HStack,
+  useToast
 } from "@chakra-ui/react";
 import { deletePublication } from "../../api/api";
 import EditPublicationDetails from "./EditPublicationDetails";
 
 const EditorPublicationDetails = (props) => {
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const publicationDeleteHandler = async () => {
     await deletePublication(props.data._id);
+    toast({
+      title: 'Publication details Deleted',
+      description: "Successfully deleted publication details.",
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
     props.getPublicationsHandler();
   };
 

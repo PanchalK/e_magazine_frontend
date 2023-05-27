@@ -21,12 +21,16 @@ import {
   Spinner,
   useDisclosure,
   Textarea,
+  useToast
 } from "@chakra-ui/react";
 import { addPublication, getPublications } from "../api/api";
 import { AddIcon } from "@chakra-ui/icons";
 import EditorPublicationDetails from "../bodyContent/EditorPublication/EditorPublicationDetails";
 
 function EditorPublication() {
+
+  const toast = useToast()
+
   const [uploadLoading, setUploadLoading] = useState(false);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -87,6 +91,13 @@ function EditorPublication() {
       })
       .finally(() => {
         setUploadLoading(false);
+        toast({
+          title: 'Publication details added',
+          description: "Successfully added publication details.",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
         onClose();
       });
   };

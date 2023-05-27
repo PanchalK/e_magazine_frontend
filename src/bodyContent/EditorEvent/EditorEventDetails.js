@@ -14,14 +14,24 @@ import {
   Text,
   Textarea,
   Input,
+  useToast
 } from "@chakra-ui/react";
 import { deleteEvent, editEvent } from "../../api/api";
 
-const EditorEventDetails = (props) => {  
+const EditorEventDetails = (props) => { 
+  
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const eventDeleteHandler = async () => {
     await deleteEvent(props.data._id);
+    toast({
+      title: 'Event Deleted',
+      description: "Successfully deleted event details.",
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
     props.getEventsHandler();
   };
   const updateHandler = () => {
@@ -46,6 +56,13 @@ const EditorEventDetails = (props) => {
     setEditing(false);
     const event = { title: titleValue, content: contentValue };
     await editEvent(props.data._id, event);
+    toast({
+      title: 'Event details updated',
+      description: "Successfully updated event details.",
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
   };
 
   const handleTitleChange = (event) => {
@@ -75,7 +92,7 @@ const EditorEventDetails = (props) => {
         <Button mt={0} onClick={onOpen}>
           Open Event Content
         </Button>
-        <Modal isOpen={isOpen} onClose={onClose} size="full">
+        <Modal isOpen={isOpen} onClose={onClose} size="6xl">
           <ModalOverlay />
           <ModalContent>
             <ModalHeader mt={"2%"} textAlign={"center"}>
