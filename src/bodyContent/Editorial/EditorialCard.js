@@ -19,7 +19,7 @@ const EditorialCard = (props) => {
           >
             <Image
               src={props.image}
-              alt="blank"
+              alt="Editor Image"
               w={{ base: "18vw", sm: "15vw", md: "16vw", lg: "11vw" }}
             />
             <Text
