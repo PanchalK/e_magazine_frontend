@@ -18,6 +18,7 @@ import {
 const LinkItems = [
   { name: 'Magazines', link: "/editor/magazines"},
   { name: 'Articles', link: "/editor/articles"},
+  { name: 'Messages', link: "/editor/messages"},
   { name: 'Publications', link: "/editor/publications"},
   { name: 'Placement Records', link: "/editor/placementrecords"},
   { name: 'Events', link: "/editor/events"},
@@ -56,12 +57,13 @@ export default function SideNav({ children }) {
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
-      mt="83px"
+      mt="8rem"
       bg={useColorModeValue('white', 'gray.900')}
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       width="273px"
       pos="fixed"
+      overflow="hidden"
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">

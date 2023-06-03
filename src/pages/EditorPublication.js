@@ -103,7 +103,7 @@ function EditorPublication() {
   };
 
   return (
-    <Box minH="100vh" w="100%">
+    <Box height="100vh" w="100%" overflowY="scroll">
       <Box mt="10rem">
         <Heading as="h2" mb={20} textAlign={"center"}>
           Publications

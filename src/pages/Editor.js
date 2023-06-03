@@ -18,7 +18,7 @@ const Editor = () => {
   },[editoremail]);
   return (
     <>
-      <Box minH="100vh" w="100%">
+      <Box height="100vh" w="100%" overflowY="scroll">
         <Box textAlign="center" mt="10rem">
           <Center>
             <Image src={editorData.image} boxSize="100px" mb={"2%"} borderRadius={"full"} />

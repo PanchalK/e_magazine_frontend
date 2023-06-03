@@ -108,7 +108,7 @@ const AdminEditors = () => {
   };
   return (
     <>
-      <Box minH="100vh" w="100%">
+      <Box height="100vh" w="100%" overflowY="scroll">
         <Box mt="10rem" overflowX="auto">
           <Heading as="h2" mb={20} textAlign={"center"}>
             Edit Editorial Board

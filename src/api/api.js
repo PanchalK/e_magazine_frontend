@@ -165,6 +165,69 @@ export const getMessage = async (desig) => {
   }
 };
 
+export const getMessages = async () => {
+  try {
+    const obj = {
+      url: `${usersUrl}/getmessages`,
+      method: "GET",
+    };
+    const result = await axios(obj);
+    return {
+      success: true,
+      data: result.data,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};
+
+export const addMessage = async (message) => {
+  try {
+    const obj = {
+      url: `${usersUrl}/addmessage`,
+      method: "POST",
+      data: message,
+    };
+    const result = await axios(obj);
+    return {
+      success: true,
+      data: result,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};
+
+export const editMessage = async (id, message) => {
+  try {
+    const obj = {
+      url: `${usersUrl}/updatemessage/${id}`,
+      method: "PUT",
+      data: message,
+    };
+    const result = await axios(obj);
+    return {
+      success: true,
+      data: result,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};
+
+export const deleteMessage = async (id) => {
+  return await axios.delete(`${usersUrl}/deletemessage/${id}`);
+};
+
 export const getEditors = async () => {
   try {
     const obj = {

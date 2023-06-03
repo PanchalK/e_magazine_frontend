@@ -3,7 +3,6 @@ import { addMagazine, getMagazines } from "../api/api";
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {
-  Box,
   Heading,
   Table,
   Thead,
@@ -23,7 +22,8 @@ import {
   Input,
   useDisclosure,
   Spinner,
-  useToast
+  useToast,
+  Box
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import EditorMagazineDetails from "../bodyContent/EditorMagazine/EditorMagazineDetails";
@@ -124,7 +124,7 @@ function EditorMagazine() {
   };
 
   return (
-    <Box minH="100vh" w="100%">
+    <Box height="100vh" w="100%" overflowY="scroll">
       <Box mt="10rem">
         <Heading as="h2" mb={20} textAlign={"center"}>
           Magazines
@@ -194,6 +194,7 @@ function EditorMagazine() {
                     <Input
                       ref={ReleaseDate}
                       type="date"
+                      name="release_date"
                       id="releasedate"
                       required
                     />

@@ -53,7 +53,7 @@ export default function SideNav({ children }) {
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
-      mt="83px"
+      mt="8rem"
       bg={useColorModeValue('white', 'gray.900')}
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}

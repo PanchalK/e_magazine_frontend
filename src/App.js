@@ -17,6 +17,7 @@ import EditorArticle from "./pages/EditorArticle";
 import EditorPublication from "./pages/EditorPublication";
 import EditorPlacementRecords from "./pages/EditorPlacementRecords";
 import EditorEvents from "./pages/EditorEvents";
+import EditorMessages from "./pages/EditorMessages";
 
 function App() {
   const isAdminAuth = useSelector(
@@ -67,6 +68,9 @@ function App() {
               </Route>
               <Route path="/editor/articles">
                 <EditorArticle />
+              </Route>
+              <Route path="/editor/messages">
+                <EditorMessages />
               </Route>
               <Route path="/editor/publications">
                 <EditorPublication />
